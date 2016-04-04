@@ -32,7 +32,7 @@ $restricted = (isset($resourceInfo) && $resourceInfo['restricted'] == "T") ? "ch
 <form id="resource_form" name="resource_form" method="post" action="index.php?rt=index/save" onsubmit="return testing();" >
 <input type="hidden" name="resource_id" value="<?php print($resourceid); ?>" />
 
-<label for="resource_name">Resource Name:</label><input type="text" value="<?php print(htmlentities($resourceTitle)); ?>" size="50" name="resource_name" id="resource_name" />
+<label for="resource_name">Resource Title:</label><input type="text" value="<?php print(htmlentities($resourceTitle)); ?>" size="50" name="resource_name" id="resource_name" />
 <label for="resource_type">Resource Type:</label><select name="resource_type" id="resource_type">
   <option <?php print($journal); ?>>Journal</option>
   <option <?php print($database); ?>>Database</option>
@@ -55,20 +55,22 @@ $restricted = (isset($resourceInfo) && $resourceInfo['restricted'] == "T") ? "ch
             $type = $config['config_type'];
             $value = $config['config_value'];
             $configId = $config['id'];
+            $url = ($config['config_type'] == 'U') ? "selected = \"yes\"" : "";
             $host = ($config['config_type'] == 'H') ? "selected = \"yes\"" : "";
+            $hostjs = ($config['config_type'] == 'HJ') ? "selected = \"yes\"" : "";
             $domain = ($config['config_type'] == 'D') ? "selected = \"yes\"" : "";
             $domainjs = ($config['config_type'] == 'DJ') ? "selected = \"yes\"" : "";
-            $hostjs = ($config['config_type'] == 'HJ') ? "selected = \"yes\"" : "";
 ?> 
 <div class="urlConfigBlock">
 <input type="hidden" name="url_id_<?php print($x); ?>" value="<?php print($configId); ?>" />
 <a class="deleteUrlButton" href="#" onClick="return false;" id="delete_<?php print($value); ?>" class="del">delete URL</a>
 <label for="url_name_<?php print($x); ?>">URL:</label><input class="urlInput" type="text" value="<?php print(htmlentities($value)); ?>" size="50" name="url_name_<?php print($x); ?>" id="url_name_<?php print($x); ?>" />
 <label for="url_select_<?php print($x); ?>">URL Type:</label><select name="url_select_<?php print($x); ?>">
+<option <?php print($url); ?>>U</option>
 <option <?php print($host); ?>>H</option>
+<option <?php print($hostjs); ?>>HJ</option>
 <option <?php print($domain); ?>>D</option>
 <option <?php print($domainjs); ?>>DJ</option>
-<option <?php print($hostjs); ?>>HJ</option>
 </select>
 </div>
 
@@ -82,10 +84,11 @@ $restricted = (isset($resourceInfo) && $resourceInfo['restricted'] == "T") ? "ch
 <a class="deleteUrlButton" href="#" id="delete_0" class="del">delete URL</a>
 <label for="url_name_0">URL:</label><input type="text" value="" size="50" name="url_name_0" id="url_name_0" />
 <label for="url_select_0">URL Type:</label><select name="url_select_0" id="url_select_0">
+<option>U</option>
 <option>H</option>
+<option>HJ</option>
 <option>D</option>
 <option>DJ</option>
-<option>HJ</option>
 </select>
 
 </div>
